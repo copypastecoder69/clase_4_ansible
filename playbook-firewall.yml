@@ -1,0 +1,37 @@
+---
+- name: Disable all TCP ports
+  ansible.posix.firewalld:
+    port: 0-65535/tcp
+    permanent: true
+    state: disabled
+    zone: drop
+
+- name: Disable all UPD ports
+  ansible.posix.firewalld:
+    port: 0-65535/udp
+    permanent: true
+    state: enabled
+    zone: drop
+
+
+- name: Allow SSH
+  ansible.posix.firewalld:
+    port: 22/tcp
+    permanent: true
+    state: enabled
+    zone: drop
+
+
+- name: Allow HTTP
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    zone: drop
+
+- name: Allow HTTPS
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+    zone: drop

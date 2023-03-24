@@ -1,0 +1,14 @@
+---
+- name: Setup NGINX
+  hosts: servers
+  tasks:
+    - name: Configure NGINX
+      ansible.builtin.include_role:
+        name: ansible-role-nginx-config
+
+        nginx_branch: stable
+
+        nginx_config_upload_html_enable: true
+        nginx_config_upload_html:
+          - src: webserver-files/index.html
+            dest: /usr/share/nginx/html
